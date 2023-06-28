@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- BEGIN TIKTOK BASE CODE -->
+    <script>
+        // TikTok Pixel Base Code
+        !function (w, d, t) {
+            if (w.ttq) return;
+            t = w.ttq = function () {
+                t.process ? t.process.apply(t, arguments) : t.queue.push(arguments);
+            };
+            t.queue = [];
+            const s = d.createElement('script');
+            s.async = true;
+            s.src = 'https://analytics.tiktok.com/i18n/pixel/sdk.js?sdkid=YOUR_PIXEL_ID';
+            s.onload = function () {
+                t.ready = function (e) {
+                    t.pixelId = e.pixelId;
+                    t.track = function (eventName, eventParams) {
+                        t.process('track', eventName, eventParams);
+                    };
+                    t.identify = function (identifyParams) {
+                        t.process('identify', identifyParams);
+                    };
+                    t.process = function (event, eventName, eventParams) {
+                        if (!eventParams) eventParams = {};
+                        if (!eventParams['pixel_id']) eventParams['pixel_id'] = e.pixelId;
+                        window._tiktokAnalytics.processEvent(event, eventName, eventParams);
+                    };
+                    for (let i = 0; i < t.queue.length; i++) {
+                        t.process.apply(t, t.queue[i]);
+                    }
+                    t.queue = [];
+                };
+                t.init = function (e) {
+                    t.ready(e);
+                };
+            };
+            (d.head || d.body).appendChild(s);
+        }(window, document, window.ttq || []);
+
+        // TikTok Pixel Initialization
+        ttq.init({
+            pixelId: '123456667',
+        });
+
+        // Track PageView Event
+        ttq.track('PageView');
+    </script>
+    <!-- END TIKTOK BASE CODE -->
+
+    <title>TikTok Pixel PageView Example</title>
+</head>
+<body>
+<h1>TikTok Pixel PageView Example</h1>
+<p>This is a sample page for tracking a PageView event using the TikTok Pixel.</p>
+
+<!-- Your website content goes here -->
+
+</body>
+</html>
