@@ -32,53 +32,53 @@
                 <title>Hello World | Store</title>
             </head>
             <body>
-             <div class="content">
-              <header>
-               <h1 class="title">Hello World | Store</h1>
-               <div class="cart">
-                Items In Cart:<input type="number" id="cart-items" width="10" height="10" value="0">
-            </div>
-        </header>
-        
-        <container>
-          <div>
-            Logged in as email@example.com
-        </div>
-    </container>
+               <div class="content">
+                  <header>
+                     <h1 class="title">Hello World | Store</h1>
+                     <div class="cart">
+                        Items In Cart:<input type="number" id="cart-items" width="10" height="10" value="0">
+                    </div>
+                </header>
 
-    <table>
-      <tr>
-       <td>
-           <div class="box"> 
-            <div class="item-title-1">Product 1</div> 
-            <div class="item-product-id-1">Product ID: 5678AB</div>
-            <div class="item-price-1">$29.99</div>
+                <container>
+                  <div>
+                    Logged in as email@example.com
+                </div>
+            </container>
 
-            <button onclick="viewContent('Product 1','5678AB',29.99)">View Content Details</button> 
-            <button id="add-to-cart-button-1" onclick="addToCart('Product 1','5678AB',29.99)">Add To Cart</button>
-        </div>
-    </td>
-    <td>
-       <div class="box">
-          <div class="item-title-2">Product 2</div> 
-          <div class="item-product-id-2">Product ID: 6521FJ</div>
-          <div class="item-price-2">$49.99</div>
+            <table>
+              <tr>
+                 <td>
+                     <div class="box"> 
+                        <div class="item-title-1">Product 1</div> 
+                        <div class="item-product-id-1">Product ID: 5678AB</div>
+                        <div class="item-price-1">$29.99</div>
 
-          <button onclick="viewContent('Product 2','6521FJ',49.99)">View Content Details</button> 
-          <button id="add-to-cart-button-2" onclick="addToCart('Product 2','6521FJ',49.99)">Add To Cart</button>
-      </div>
-  </td>
-  <td>
-    <div class="box">
-     <div class="item-title-3" class="shop-item-title">Product 3</div> 
-     <div class="item-product-id-2">Product ID: 4098MD</div>
-     <div class="item-price-2" class="shop-item-price">$199.99</div>
+                        <button onclick="viewContent('Product 1','5678AB',29.99)">View Content Details</button> 
+                        <button id="add-to-cart-button-1" onclick="addToCart('Product 1','5678AB',29.99)">Add To Cart</button>
+                    </div>
+                </td>
+                <td>
+                 <div class="box">
+                  <div class="item-title-2">Product 2</div> 
+                  <div class="item-product-id-2">Product ID: 6521FJ</div>
+                  <div class="item-price-2">$49.99</div>
 
-     <button onclick="viewContent('Product 3','4098MD',199.99)">View Content Details</button> 
-     <button id="add-to-cart-button-3" onclick="addToCart('Product 3','4098MD',199.99)">Add To Cart</button> 
- </div>
-</td>
-</tr>
+                  <button onclick="viewContent('Product 2','6521FJ',49.99)">View Content Details</button> 
+                  <button id="add-to-cart-button-2" onclick="addToCart('Product 2','6521FJ',49.99)">Add To Cart</button>
+              </div>
+          </td>
+          <td>
+            <div class="box">
+               <div class="item-title-3" class="shop-item-title">Product 3</div> 
+               <div class="item-product-id-2">Product ID: 4098MD</div>
+               <div class="item-price-2" class="shop-item-price">$199.99</div>
+
+               <button onclick="viewContent('Product 3','4098MD',199.99)">View Content Details</button> 
+               <button id="add-to-cart-button-3" onclick="addToCart('Product 3','4098MD',199.99)">Add To Cart</button> 
+           </div>
+       </td>
+   </tr>
 </table>
 
 <button class="checkout" onclick="initiateCheckout()">Initiate Checkout</button>
@@ -112,17 +112,22 @@
 
 	        	// BEGIN - PLACE YOUR FUNCTIONS IN THIS SECTION 
 
-               ttq.identify({
+             ttq.identify({
 	        			// ADVANCED MATCHING PARAMETERS 
                         email: 'email@example.com',
                             // phone_number: '+15551234567',
-                            phone_number: phone,
+                        phone_number: phone,
                         })		
 
-               ttq.track("CompleteRegistration",{
+             ttq.track("SubmitForm",{
 	        			// EVENT PARAMETERS 
+                    description: 'user form submission',
+                    status: 'User Stage - Form Submission',
+                    query: 'N/A',
 	        		}) 
-               
+
+            registrationComplete();
+
         	    //END - PLACE YOUR FUNCTIONS IN THIS SECTION 
         	}		
         	
@@ -151,7 +156,7 @@
 
         		ttq.identify({
         			email: 'email@example.com',
-                    phone_number: '+15551234567', // we could do this a global variable.. 
+                    phone_number: '+15551234567', 
                 })		
 
         		ttq.track("AddToCart",{
@@ -159,12 +164,17 @@
                     {
                       content_id: productId,
                       content_name: title,
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: price,
                   }],
                   content_type:'product',
                   value: price,
                   currency: 'USD', 
+                  description: productId + ' was added to the cart',
+                  status: 'User Stage - Add To Cart',
+                  query: 'N/A',
               }) 
 
         		// END - PLACE YOUR FUNCTIONS IN THIS SECTION    		
@@ -197,13 +207,18 @@
                     {
                       content_id: productId,
                       content_name: title,
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: price,
                   }],
                   content_type:'product',
-    value: price, // (keeping it simple) hardcoded, value = price as there is only 1 item. 
-    currency: 'USD', 
-}) 
+                    value: price, // (keeping it simple) hardcoded, value = price as there is only 1 item. 
+                    currency: 'USD', 
+                    description: 'Page for ' + productId + ' was viewed',
+                    status: 'User Stage - View Content',
+                    query: 'N/A',
+                }) 
 
         		// END - PLACE YOUR FUNCTIONS IN THIS SECTION 
         	}
@@ -224,14 +239,17 @@
                     phone_number: '+15551234567', // we could do this a global variable.. 
                 })		
 
-        		ttq.track("",{
-        			/* EVENT PARAMETERS */
-        		}) 
+        		ttq.track("CompleteRegistration",{
+                        // EVENT PARAMETERS 
+                    description: 'user registered',
+                    status: 'User Stage - Registration',
+                    query: 'N/A',
+                    }) 
 
         		// END - PLACE YOUR FUNCTIONS IN THIS SECTION 
 
         		// BEGIN DO NOT EDIT SECTION 
-             alert("Registration Complete");
+               alert("Registration Complete");
         	    // END DO NOT EDIT SECTION 
         	}
 
@@ -249,28 +267,37 @@
 
                   // BEGIN HINT - MULTIPLE ITEMS 
                   ttq.track('InitiateCheckout', {
-                   contents: [
-                   {
+                     contents: [
+                     {
                       content_id: '4098MD',
                       content_name: 'Product 3',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 199.99,
                   },
                   {
                       content_id: '6521FJ',
                       content_name: 'Product 2',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 49.99,
                   },
                   {
                       content_id: '5678AB',
                       content_name: 'Product 1',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 29.99,
                   }],
                   content_type: 'product',
                   value: 279.97,
                   currency: 'USD',
+                  description: 'Checkout Page Initated',
+                  status: 'User Stage - Checkout',
+                  query: 'N/A',
               });
         		  // END HINT - MULTIPLE ITEMS 
 
@@ -279,9 +306,9 @@
                 // BEGIN DO NOT EDIT SECTION 
                 completePayment();
             } else {	
-             alert("Payment step cancelled!");
-             return false;    
-         }
+               alert("Payment step cancelled!");
+               return false;    
+           }
         		// END DO NOT EDIT SECTION 
         	}
 
@@ -296,28 +323,37 @@
 
                   // BEGIN HINT - MULTIPLE ITEMS 
                   ttq.track('CompletePayment', {
-                   contents: [
-                   {
+                     contents: [
+                     {
                       content_id: '4098MD',
                       content_name: 'Product 3',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 199.99,
                   },
                   {
                       content_id: '6521FJ',
                       content_name: 'Product 2',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 49.99,
                   },
                   {
                       content_id: '5678AB',
                       content_name: 'Product 1',
+                      content_category: 'Hello World - Product Category ABC',
+                      brand: 'Hello World' ,
                       quantity: 1,
                       price: 29.99,
                   }],
                   content_type: 'product',
                   value: 279.97,
                   currency: 'USD',
+                  description: 'Payment Completed',
+                  status: 'Payment - Completed',
+                  query: 'N/A',
               });
         		  // END HINT - MULTIPLE ITEMS 
 
@@ -334,48 +370,48 @@
         <style type="text/css">
 
           h1 + div {
-           padding-left: 370px;
-       }
+             padding-left: 370px;
+         }
 
-       div {
-           padding: 10px;
-       }
+         div {
+             padding: 10px;
+         }
 
-       table {
-           padding-bottom: 20px;
-       }
+         table {
+             padding-bottom: 20px;
+         }
 
-       footer {
-           padding: 10px;
-       }
+         footer {
+             padding: 10px;
+         }
 
-       .box {
-           box-sizing: content-box;    
-           width: 200px;
-           height: 180px;
-           padding: 20px;    
-           border: 2px solid black;
-           text-align: center;
-       }
+         .box {
+             box-sizing: content-box;    
+             width: 200px;
+             height: 180px;
+             padding: 20px;    
+             border: 2px solid black;
+             text-align: center;
+         }
 
-       .cart {		
-           float: right;
-       }
+         .cart {		
+             float: right;
+         }
 
-       .content {
-           max-width: 800px;
-           margin: auto;
-       }
+         .content {
+             max-width: 800px;
+             margin: auto;
+         }
 
-       .title {
-           display: inline-block;
-       }
+         .title {
+             display: inline-block;
+         }
 
-       #cart-items {
-           border: 0;
-       }
-   </style>
-   <!-- END STYLING SECTION - DO NOT EDIT -->
+         #cart-items {
+             border: 0;
+         }
+     </style>
+     <!-- END STYLING SECTION - DO NOT EDIT -->
 
-</body>
-</html>
+ </body>
+ </html>
