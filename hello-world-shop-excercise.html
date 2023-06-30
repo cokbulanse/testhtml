@@ -115,15 +115,15 @@
              ttq.identify({
 	        			// ADVANCED MATCHING PARAMETERS 
                         email: 'email@example.com',
-                            // phone_number: '+15551234567',
                         phone_number: '+15551234567',
+                        external_id: 'EXT-123',
                         })		
 
              ttq.track("CompleteRegistration",{
 	        			// EVENT PARAMETERS 
-                    //description: 'user form submission',
-                    //status: 'User Stage - Form Submission',
-                    //query: 'N/A',
+                    description: 'user registration submission',
+                    status: 'User Stage - Registration',
+                    query: 'N/A',
 	        		}) 
 
             // registrationComplete();
@@ -157,6 +157,7 @@
         		ttq.identify({
         			email: 'email@example.com',
                     phone_number: '+15551234567', 
+                    external_id: 'EXT-123',
                 })		
 
         		ttq.track("AddToCart",{
@@ -199,7 +200,8 @@
 
         		ttq.identify({
         			email: 'email@example.com',
-                    phone_number: '+15551234567', // we could do this a global variable.. 
+                    phone_number: '+15551234567',
+                    external_id: 'EXT-123', 
                 })		
 
         		ttq.track("ViewContent",{
@@ -208,7 +210,7 @@
                       content_id: productId,
                       content_name: title,
                       content_category: 'Hello World - Product Category ABC',
-                      brand: 'Hello World' ,
+                      brand: 'Hello World',
                       quantity: 1,
                       price: price,
                   }],
@@ -236,7 +238,8 @@
         		ttq.identify({
         			/* ADVANCED MATCHING PARAMETERS */
                     email: 'email@example.com',
-                    phone_number: '+15551234567', // we could do this a global variable.. 
+                    phone_number: '+15551234567', // we could do this a global variable..
+                    external_id: 'EXT-123', 
                 })		
 
         		ttq.track("CompleteRegistration",{
@@ -262,7 +265,8 @@
                 ttq.identify({
         			// ADVANCED MATCHING PARAMETERS 
                     email: 'email@example.com',
-                    phone_number: '+15551234567', // we could do this a global variable.. 
+                    phone_number: '+15551234567', // we could do this a global variable..
+                    external_id: 'EXT-123', 
                 })	
 
                   // BEGIN HINT - MULTIPLE ITEMS 
@@ -318,7 +322,8 @@
                 ttq.identify({
         			// ADVANCED MATCHING PARAMETERS 
                     email: 'email@example.com',
-                    phone_number: '+15551234567', // we could do this a global variable.. 
+                    phone_number: '+15551234567', 
+                    external_id: 'EXT-123',
                 })	
 
                   // BEGIN HINT - MULTIPLE ITEMS 
