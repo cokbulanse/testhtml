@@ -186,8 +186,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         		// END HINT: UTILIZE THESE VARIABLES WHEN CONSTRUCTING YOUR CORRESPONDING TIKTOK PIXEL EVENT
 
 
-			dataLayer.push({'event': 'GTM-ViewContent'});
-			dataLayer.push({'product': productId});
+			//dataLayer.push({'event': 'GTM-ViewContent'});
+			//??dataLayer.push({'product': productId});
+			dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+			dataLayer.push({
+			  'event': 'GTM-ViewContent',
+			  'ecommerce': {
+			    'detail': {
+			      'actionField': {'list': 'Apparel Gallery'},    // 'detail' actions have an optional list property.
+			      'products': [{
+			        'name': 'Triblend Android T-Shirt',         // Name or ID is required.
+			        'id': '12345',
+			        'price': '15.25',
+			        'brand': 'Google',
+			        'category': 'Apparel',
+			        'variant': 'Gray'
+			       }]
+			     }
+			   }
+			});
 				
 
         		// BEGIN - PLACE YOUR FUNCTIONS IN THIS SECTION 
