@@ -185,6 +185,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         		console.log("productId:" + " " + productId);
         		// END HINT: UTILIZE THESE VARIABLES WHEN CONSTRUCTING YOUR CORRESPONDING TIKTOK PIXEL EVENT
 
+
+			dataLayer.push({'event': 'ViewContent'});
+			dataLayer.push({'product': 'productId'});
+				
+
         		// BEGIN - PLACE YOUR FUNCTIONS IN THIS SECTION 
 
         		ttq.identify({
